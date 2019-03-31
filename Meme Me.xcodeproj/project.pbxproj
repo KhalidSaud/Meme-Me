@@ -12,7 +12,6 @@
 		E90182D1224D805E004B858A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E90182CF224D805E004B858A /* Main.storyboard */; };
 		E90182D3224D8063004B858A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E90182D2224D8063004B858A /* Assets.xcassets */; };
 		E90182D6224D8063004B858A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E90182D4224D8063004B858A /* LaunchScreen.storyboard */; };
-		E90182DE224DC55B004B858A /* TextFieldEditDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90182DD224DC55B004B858A /* TextFieldEditDelegate.swift */; };
 		E946EF0D224E005E00D7FAAA /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946EF0C224E005E00D7FAAA /* Meme.swift */; };
 /* End PBXBuildFile section */
 
@@ -24,7 +23,6 @@
 		E90182D2224D8063004B858A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E90182D5224D8063004B858A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E90182D7224D8063004B858A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E90182DD224DC55B004B858A /* TextFieldEditDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldEditDelegate.swift; sourceTree = "<group>"; };
 		E946EF0C224E005E00D7FAAA /* Meme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,7 +56,6 @@
 		E90182CA224D805E004B858A /* Meme Me */ = {
 			isa = PBXGroup;
 			children = (
-				E90182DD224DC55B004B858A /* TextFieldEditDelegate.swift */,
 				E90182CB224D805E004B858A /* AppDelegate.swift */,
 				E90182CD224D805E004B858A /* ViewController.swift */,
 				E90182CF224D805E004B858A /* Main.storyboard */,
@@ -143,7 +140,6 @@
 			files = (
 				E90182CE224D805E004B858A /* ViewController.swift in Sources */,
 				E946EF0D224E005E00D7FAAA /* Meme.swift in Sources */,
-				E90182DE224DC55B004B858A /* TextFieldEditDelegate.swift in Sources */,
 				E90182CC224D805E004B858A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

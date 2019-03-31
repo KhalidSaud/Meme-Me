@@ -9,8 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
-
-    let textFieldEditDelegate = TextFieldEditDelegate()
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
@@ -95,6 +93,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return true
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        textField.text = (textField.text! as NSString).replacingCharacters(in: range, with: string.uppercased())
+        return false
+    }
+
+    
     
     
 
@@ -113,7 +117,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 imagePicker.sourceType = .camera
                 self.present(imagePicker, animated: true, completion: nil)
             } else {
-                print("Camera not found")
+                self.showSaveMessage(alertTitle: "Error", message: "Camera not found", actionTitle: "OK")
             }
             
         }))
@@ -221,7 +225,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
             if success {
                 self.save(memedImage: memeForShare)
-                self.showSaveMessage()
+                self.showSaveMessage(alertTitle: "Meme Me", message: "Your Image has been saved successfuly!", actionTitle: "OK")
             }
         }
         present(activity, animated: true, completion: nil)
@@ -254,11 +258,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
     }
     
-    func showSaveMessage() {
+    func showSaveMessage(alertTitle: String, message: String, actionTitle: String) {
         
-        let alert = UIAlertController(title: "Meme Me", message: "Your Image has been saved successfuly!", preferredStyle: .alert)
+        let alert = UIAlertController(title: alertTitle, message: message, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: actionTitle, style: .default, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
         
