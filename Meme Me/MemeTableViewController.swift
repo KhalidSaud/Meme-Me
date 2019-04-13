@@ -16,18 +16,21 @@ class MemeTableViewController: UIViewController, UITableViewDelegate, UITableVie
     var memes : [Meme]! {
         return (UIApplication.shared.delegate as! AppDelegate).memes
     }
-    
-    let tableView : UITableViewController = UITableViewController()
+
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         
-        self.tableView.reloadInputViews()
+        tableView.estimatedRowHeight = 120.0
+        tableView.rowHeight = 120.0
+        
+        tableView.reloadData()
         
     }
     
@@ -42,15 +45,13 @@ class MemeTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "")
-        let cell = UITableViewCell()
-        let meme = memes[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "memeCellId")
         
-        cell.imageView?.image = meme.memeImage
-        cell.textLabel?.text = memes[indexPath.row].topText + " ... " + memes[indexPath.row].bottomText
+        cell!.imageView?.image = memes[indexPath.row].memeImage
+        cell!.textLabel?.text = memes[indexPath.row].topText + " " + memes[indexPath.row].bottomText
         
         
-        return cell
+        return cell!
     }
     
     

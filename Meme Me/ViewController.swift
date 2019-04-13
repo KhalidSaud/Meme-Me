@@ -273,7 +273,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         let alert = UIAlertController(title: alertTitle, message: message, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: actionTitle, style: .default, handler: nil))
+//        alert.addAction(UIAlertAction(title: actionTitle, style: .default, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: actionTitle, style: .default, handler: { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }))
         
         self.present(alert, animated: true, completion: nil)
         

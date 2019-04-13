@@ -187,7 +187,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="XQF-wX-wbV">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="memeCellId" id="XQF-wX-wbV">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XQF-wX-wbV" id="0sC-PX-Lua">
@@ -217,6 +217,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="BVg-SW-FXL" id="apL-dR-WUc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sUO-Un-Rnm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -247,6 +250,6 @@
         <image name="JCZNV" width="120" height="173"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Iq5-GK-mOV"/>
+        <segue reference="FNF-bn-WiR"/>
     </inferredMetricsTieBreakers>
 </document>
