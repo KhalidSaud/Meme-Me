@@ -193,12 +193,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     
-    // Meme
+    // MARK: Meme
     
     func save(memedImage: UIImage) {
 
         let meme = Meme(image: chosenImage, topText: topTextField.text!, bottomText: bottomTextField.text!, memeImage: memedImage)
         self.meme = meme
+        
+        // 2.0
+        // Add memes to the array on Application Delegate
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
+//        (UIApplication.shared.delegate as! AppDelegate).memes.append(meme)
+        
     }
     
     func generateMemedImage() -> UIImage {
@@ -226,6 +234,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             if success {
                 self.save(memedImage: memeForShare)
                 self.showSaveMessage(alertTitle: "Meme Me", message: "Your Image has been saved successfuly!", actionTitle: "OK")
+                
+                // 2.0
+//                self.dismiss(animated: true, completion: nil)
             }
         }
         present(activity, animated: true, completion: nil)
@@ -267,6 +278,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.present(alert, animated: true, completion: nil)
         
     }
+    
+    
+    
+    // MARK: Cancel Modelly
+    
+    
+    
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
     
 }
 
