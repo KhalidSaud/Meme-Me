@@ -37,9 +37,16 @@
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IBF-Ua-XAE">
                                                     <rect key="frame" x="0.0" y="21" width="173" height="162"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="173" id="TFE-vN-GXH"/>
+                                                        <constraint firstAttribute="height" constant="162" id="tRw-J9-bh7"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmS-6x-XYx">
                                                     <rect key="frame" x="57" y="0.0" width="59" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="CZX-1j-Urr"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -49,7 +56,7 @@
                                         <constraints>
                                             <constraint firstItem="IBF-Ua-XAE" firstAttribute="top" secondItem="zmS-6x-XYx" secondAttribute="bottom" id="5hw-nY-Hya"/>
                                             <constraint firstAttribute="bottom" secondItem="IBF-Ua-XAE" secondAttribute="bottom" id="Det-el-X5P"/>
-                                            <constraint firstItem="zmS-6x-XYx" firstAttribute="leading" secondItem="ecf-pe-WFp" secondAttribute="leadingMargin" constant="49" id="LRf-Fk-BZJ"/>
+                                            <constraint firstItem="zmS-6x-XYx" firstAttribute="leading" secondItem="IBF-Ua-XAE" secondAttribute="leadingMargin" constant="49" id="LRf-Fk-BZJ"/>
                                             <constraint firstItem="zmS-6x-XYx" firstAttribute="centerX" secondItem="IBF-Ua-XAE" secondAttribute="centerX" id="QD9-KT-Gt6"/>
                                             <constraint firstItem="zmS-6x-XYx" firstAttribute="top" secondItem="ecf-pe-WFp" secondAttribute="top" id="Qg4-gV-1Ul"/>
                                             <constraint firstAttribute="trailing" secondItem="IBF-Ua-XAE" secondAttribute="trailing" id="SFd-Ek-xOj"/>
@@ -63,6 +70,7 @@
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="gKX-jo-fCE" id="TZO-4G-EdW"/>
+                                    <outlet property="delegate" destination="gKX-jo-fCE" id="osR-9O-Li6"/>
                                 </connections>
                             </collectionView>
                         </subviews>
@@ -283,6 +291,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="liM-GP-dtN" id="Tst-I2-EVH"/>
+                                    <outlet property="delegate" destination="liM-GP-dtN" id="Sme-gL-0ZM"/>
                                 </connections>
                             </tableView>
                         </subviews>
