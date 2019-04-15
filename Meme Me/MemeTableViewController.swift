@@ -54,5 +54,16 @@ class MemeTableViewController: UIViewController, UITableViewDelegate, UITableVie
         return cell!
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // tableView.deselectRow(at: indexPath, animated: true)
+        
+        // performSegue(withIdentifier: "TableToDetail", sender: self)
+        
+        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "DetailVC") as! DetailVCViewController
+        detailController.image = memes[indexPath.row].memeImage
+        self.navigationController!.pushViewController(detailController, animated: true)
+    }
+    
     
 }
