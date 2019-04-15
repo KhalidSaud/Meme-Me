@@ -68,7 +68,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             keyboardShowHideTrigger = true
         }
         
-        checkIfTextFieldIsEdited()
+        // checkIfTextFieldIsEdited()
         
     }
     
@@ -95,6 +95,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         textField.text = (textField.text! as NSString).replacingCharacters(in: range, with: string.uppercased())
+        checkIfTextFieldIsEdited()
         return false
     }
 

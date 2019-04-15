@@ -13,6 +13,10 @@ class MemeTableViewController: UIViewController, UITableViewDelegate, UITableVie
     //    var memes: [Meme] = []
     //    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
+    var tempImage: UIImage?
+    
+   // var detailVC =
+    
     var memes : [Meme]! {
         return (UIApplication.shared.delegate as! AppDelegate).memes
     }
@@ -21,6 +25,9 @@ class MemeTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
         
     }
     
@@ -58,12 +65,32 @@ class MemeTableViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // tableView.deselectRow(at: indexPath, animated: true)
         
-        // performSegue(withIdentifier: "TableToDetail", sender: self)
+        tempImage = memes[indexPath.row].memeImage
+        print("memeimage")
+        print(memes[indexPath.row].memeImage)
+        print("temp")
+        print(tempImage)
+        performSegue(withIdentifier: "TableToDetail", sender: self)
         
-        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "DetailVC") as! DetailVCViewController
-        detailController.image = memes[indexPath.row].memeImage
-        self.navigationController!.pushViewController(detailController, animated: true)
+        
+//        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "DetailVC") as! DetailVCViewController
+//        detailController.image = memes[indexPath.row].memeImage
+//        self.navigationController!.pushViewController(detailController, animated: true)
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if (segue.identifier == "TableToDetail") {
+            let detailVC = segue.destination as! DetailVCViewController
+            detailVC.image = tempImage
+            print("detailvc")
+            print(detailVC.image!)
+            
+            
+        }
+        
+        
+    }
     
 }

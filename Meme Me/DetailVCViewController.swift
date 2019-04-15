@@ -12,6 +12,8 @@ class DetailVCViewController: UIViewController {
 
     var image: UIImage? = UIImage()
     
+    var delegate : DetailVCViewController?
+    
     @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {

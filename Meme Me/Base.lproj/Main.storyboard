@@ -86,14 +86,13 @@
                     <navigationItem key="navigationItem" id="bID-eO-l3T">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="Mgh-1f-vDj">
                             <connections>
-                                <segue destination="cNF-wl-ImW" kind="presentation" identifier="goToMemeEditor" id="Iq5-GK-mOV"/>
+                                <segue destination="cNF-wl-ImW" kind="presentation" id="Yfb-b7-d4h"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="kwW-5U-sWD" id="E3W-tr-Xwj"/>
                         <outlet property="flowLayout" destination="L1v-4u-e7i" id="mCW-9J-Dwn"/>
-                        <segue destination="84U-TC-gQ6" kind="showDetail" identifier="CollectionToDetail" id="diq-Bi-jTn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uDz-Qy-5AW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -200,7 +199,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="Dl3-dV-jdw"/>
                     </view>
                     <navigationItem key="navigationItem" id="rXa-ST-ZM4"/>
@@ -289,10 +288,6 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="liM-GP-dtN" id="Tst-I2-EVH"/>
-                                    <outlet property="delegate" destination="liM-GP-dtN" id="Sme-gL-0ZM"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -313,6 +308,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="BVg-SW-FXL" id="apL-dR-WUc"/>
+                        <segue destination="UWl-Bm-NVP" kind="show" identifier="TableToDetail" id="qOs-y6-eew"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sUO-Un-Rnm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -362,6 +358,7 @@
         <image name="JCZNV" width="120" height="173"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Iq5-GK-mOV"/>
+        <segue reference="Yfb-b7-d4h"/>
+        <segue reference="qOs-y6-eew"/>
     </inferredMetricsTieBreakers>
 </document>
