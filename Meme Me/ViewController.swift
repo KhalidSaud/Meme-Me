@@ -13,8 +13,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
-    @IBOutlet weak var shareButtonOutlet: UIButton!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var toolbarOutlet: UIToolbar!
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
+    
     
     var chosenImage = UIImage() // remove ?
     var memedImage = UIImage()
@@ -41,6 +43,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
         subscribeToKeyboardNotificationsHide()
+        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
+            cameraButton.isEnabled = false
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -49,7 +54,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         unsubscribeFromKeyboardNotificationsHide()
     }
     
-    // TEXT FIELD
+    // MARK: TEXT FIELD
     
     func textFieldNewAttribute(textField: UITextField, text: String) {
         textField.defaultTextAttributes = memeTextAttributes
@@ -57,10 +62,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         textField.textAlignment = .center
         textField.delegate = self
     }
-    
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = ""
+        
+        if (textField.text == "TOP") {
+            textField.text = ""
+        }
+        if (textField.text == "BOTTOM") {
+            textField.text = ""
+        }
+
+        
         if textField == topTextField {
             keyboardShowHideTrigger = false
         }
@@ -68,9 +80,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             keyboardShowHideTrigger = true
         }
         
-        // checkIfTextFieldIsEdited()
-        
     }
+    
+   
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == topTextField && textField.text == "" {
@@ -103,37 +115,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
 
-    // IMAGE PICKER
-    @IBAction func pickingImage(_ sender: Any) {
-        
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        
-        
-        let actionSheet = UIAlertController(title: "Choose an Image", message: "Choose an image to edit", preferredStyle: .actionSheet)
-        
-        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (UIAlertAction) in
-            
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                imagePicker.sourceType = .camera
-                self.present(imagePicker, animated: true, completion: nil)
-            } else {
-                self.showSaveMessage(alertTitle: "Error", message: "Camera not found", actionTitle: "OK")
-            }
-            
-        }))
-        
-        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (UIAlertAction) in
-            imagePicker.sourceType = .photoLibrary
-            self.present(imagePicker, animated: true, completion: nil)
-        }))
-        
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        
-        present(actionSheet, animated: true, completion: nil)
-        
-    }
+    // MARK: IMAGE PICKER
+
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
@@ -155,7 +138,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     
-    // KEYBOARD MANIPULATION
+    // MARK: KEYBOARD MANIPULATION
     @objc func keyboardWillShow(_ notification:Notification) {
         if(keyboardShowHideTrigger) {
            view.frame.origin.y = -getKeyboardHeight(notification)
@@ -244,7 +227,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     
-    // Share image
+    // Mark: Share image needs fixing
     @IBAction func shareButtonPressed(_ sender: Any) {
         share()
     }
@@ -252,20 +235,24 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func checkIfTextFieldIsEdited() {
         
         if (topTextField.text == "" || topTextField.text == "TOP") || (bottomTextField.text == "" || bottomTextField.text == "BOTTOM") {
-            shareButtonOutlet.isEnabled = false
+             shareButton.isEnabled = false
         } else {
-            shareButtonOutlet.isEnabled = true
+             shareButton.isEnabled = true
         }
     }
     
     func toolbarIsVisible(visible: Bool) {
+        let tempColor = topTextField.tintColor
         
         if visible {
-            shareButtonOutlet.isHidden = false
             toolbarOutlet.isHidden = false
+            topTextField.tintColor = .clear
+            bottomTextField.tintColor = .clear
+            
         } else {
-            shareButtonOutlet.isHidden = true
             toolbarOutlet.isHidden = true
+            topTextField.tintColor = tempColor
+            bottomTextField.tintColor = tempColor
         }
         
     }
@@ -273,9 +260,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func showSaveMessage(alertTitle: String, message: String, actionTitle: String) {
         
         let alert = UIAlertController(title: alertTitle, message: message, preferredStyle: .alert)
-        
-//        alert.addAction(UIAlertAction(title: actionTitle, style: .default, handler: nil))
-        
+                
         alert.addAction(UIAlertAction(title: actionTitle, style: .default, handler: { (action) in
             self.dismiss(animated: true, completion: nil)
         }))
@@ -296,6 +281,33 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
     }
     
+    
+    // MARK: Gallery and Camera Buttons
+    
+    @IBAction func cameraButtonPressed(_ sender: Any) {
+        print("camera pressed")
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+            self.present(imagePicker, animated: true, completion: nil)
+        } else {
+            self.showSaveMessage(alertTitle: "Error", message: "Camera not found", actionTitle: "OK")
+        }
+        
+    }
+    
+    @IBAction func galleryButtonPressed(_ sender: Any) {
+        print("gallery pressed")
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        
+        imagePicker.sourceType = .photoLibrary
+        self.present(imagePicker, animated: true, completion: nil)
+    }
     
 }
 

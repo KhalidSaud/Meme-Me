@@ -113,9 +113,15 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1sy-0O-4sk">
                                 <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <items>
-                                    <barButtonItem title="Pick" id="Z65-mF-FAs">
+                                    <barButtonItem systemItem="camera" id="Qjd-mo-htw">
                                         <connections>
-                                            <action selector="pickingImage:" destination="BYZ-38-t0r" id="dkj-cY-UKm"/>
+                                            <action selector="cameraButtonPressed:" destination="BYZ-38-t0r" id="qTn-V5-oPR"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="c12-0a-WVc"/>
+                                    <barButtonItem title="Gallery" id="uxF-uZ-efG">
+                                        <connections>
+                                            <action selector="galleryButtonPressed:" destination="BYZ-38-t0r" id="DiV-mt-cGT"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -134,17 +140,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FWQ-Fk-BNR">
-                                <rect key="frame" x="374.66666666666669" y="820" width="27" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="ITh-1e-eoa"/>
-                                    <constraint firstAttribute="width" constant="27" id="vOI-Dd-i3r"/>
-                                </constraints>
-                                <state key="normal" image="JCZNV"/>
-                                <connections>
-                                    <action selector="shareButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kVi-Dp-MPP"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
@@ -154,8 +149,6 @@
                             <constraint firstItem="gB0-sg-Juc" firstAttribute="bottom" secondItem="HXD-Bf-rEA" secondAttribute="bottom" multiplier="0.9" id="E07-az-Vhk"/>
                             <constraint firstItem="gB0-sg-Juc" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="FgZ-UG-WVL"/>
                             <constraint firstItem="HXD-Bf-rEA" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="H3u-Sv-2xW"/>
-                            <constraint firstItem="FWQ-Fk-BNR" firstAttribute="trailing" secondItem="1sy-0O-4sk" secondAttribute="trailing" multiplier="0.97" id="PMM-34-uCs"/>
-                            <constraint firstItem="FWQ-Fk-BNR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="T1K-R7-iKa"/>
                             <constraint firstItem="1sy-0O-4sk" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="WBT-Hu-xlp"/>
                             <constraint firstItem="R4E-9n-KbE" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="dNK-SG-nkE"/>
                             <constraint firstItem="HXD-Bf-rEA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="e7c-lL-pAL"/>
@@ -163,7 +156,6 @@
                             <constraint firstItem="HXD-Bf-rEA" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="i4U-9O-Wz3"/>
                             <constraint firstItem="gB0-sg-Juc" firstAttribute="width" secondItem="R4E-9n-KbE" secondAttribute="width" id="j40-LH-Pem"/>
                             <constraint firstItem="HXD-Bf-rEA" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" id="mcO-X5-kgR"/>
-                            <constraint firstItem="FWQ-Fk-BNR" firstAttribute="centerY" secondItem="1sy-0O-4sk" secondAttribute="centerY" id="sz6-md-Bmx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -173,11 +165,17 @@
                                 <action selector="cancelButtonPressed:" destination="BYZ-38-t0r" id="Unc-Wc-9wa"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Share" style="done" id="uVi-lM-5gJ">
+                            <connections>
+                                <action selector="shareButtonPressed:" destination="BYZ-38-t0r" id="uL2-wb-3kL"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bottomTextField" destination="gB0-sg-Juc" id="9vK-CF-DRf"/>
+                        <outlet property="cameraButton" destination="Qjd-mo-htw" id="gpi-fI-8nP"/>
                         <outlet property="imageView" destination="HXD-Bf-rEA" id="kud-dn-Qdx"/>
-                        <outlet property="shareButtonOutlet" destination="FWQ-Fk-BNR" id="sMj-4Z-me2"/>
+                        <outlet property="shareButton" destination="uVi-lM-5gJ" id="Lrc-qM-Xom"/>
                         <outlet property="toolbarOutlet" destination="1sy-0O-4sk" id="awE-ep-WEt"/>
                         <outlet property="topTextField" destination="R4E-9n-KbE" id="l7u-Ye-TQS"/>
                     </connections>
@@ -194,12 +192,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GPZ-yl-58e">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GPZ-yl-58e">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="GPZ-yl-58e" firstAttribute="bottom" secondItem="Dl3-dV-jdw" secondAttribute="bottom" id="GHA-cL-r6M"/>
+                            <constraint firstAttribute="trailing" secondItem="GPZ-yl-58e" secondAttribute="trailing" id="QHG-vT-Ycg"/>
+                            <constraint firstItem="GPZ-yl-58e" firstAttribute="leading" secondItem="LXI-KK-USo" secondAttribute="leading" id="UGu-7X-BAn"/>
+                            <constraint firstItem="GPZ-yl-58e" firstAttribute="top" secondItem="Dl3-dV-jdw" secondAttribute="top" id="ZS5-sC-byD"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Dl3-dV-jdw"/>
                     </view>
                     <navigationItem key="navigationItem" id="rXa-ST-ZM4"/>
@@ -209,7 +212,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gAe-vS-trf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3469.5652173913045" y="505.58035714285711"/>
+            <point key="canvasLocation" x="3469.4196428571427" y="504.34782608695656"/>
         </scene>
         <!--Table-->
         <scene sceneID="NUV-H1-Jhn">
@@ -355,7 +358,6 @@
     </scenes>
     <resources>
         <image name="DefaultImage" width="1440" height="720"/>
-        <image name="JCZNV" width="120" height="173"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Yfb-b7-d4h"/>

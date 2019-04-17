@@ -22,8 +22,14 @@ class MemeCollectionViewController: UIViewController, UICollectionViewDelegate, 
         super.viewWillAppear(true)
         
         memes = appDelegate.memes
-        collectionView.reloadData()
         
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        collectionView.reloadData()
     }
     
     override func viewDidLoad() {
